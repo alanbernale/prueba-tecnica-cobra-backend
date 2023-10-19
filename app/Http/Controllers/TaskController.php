@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -32,8 +33,22 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request)
     {
-        //
+        // Obtener los datos de entrada validados
+        $validated = $request->validated();
+
+        // Se crea una nueva tarea con los datos de entrada
+        $task = Task::create([
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'completed' => $request->has('completed'),
+        ]);
+
+        // Se retorna el registro creado y un mensaje de confirmación
+        return response()->json([
+            'data' => $task,
+            'message' => 'A new task record has been created.'
+        ], Response::HTTP_OK);
     }
 }
