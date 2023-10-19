@@ -17,4 +17,13 @@ class Task extends Model
         'description',
         'completed',
     ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'completed' => 'boolean',
+    ];
 }
