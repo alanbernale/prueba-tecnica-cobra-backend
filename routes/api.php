@@ -16,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Rutas de autenticación
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout']);
 Route::post('register', [RegisterController::class, 'register']);
 
+// Rutas de tareas
 Route::get('/tasks', [TaskController::class, 'index']);
 Route::post('/tasks', [TaskController::class, 'store']);

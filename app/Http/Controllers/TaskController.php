@@ -27,7 +27,9 @@ class TaskController extends Controller
         $tasks = Task::all();
 
         // Devolver una respuesta JSON con la lista de tareas.
-        return response()->json(['data' => $tasks], Response::HTTP_OK);
+        return response()->json([
+            'data' => $tasks
+        ], Response::HTTP_OK);
     }
 
     /**
